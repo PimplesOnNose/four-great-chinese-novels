@@ -83,28 +83,38 @@ class LanguageToggle {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  const toggle = document.querySelector('.lang-toggle');
+  const savedLang = localStorage.getItem('novels-lang') || 'en';
   
-  if (toggle) {
-    // Landing page - create toggle instance
-    window.langToggle = new LanguageToggle();
-  } else {
-    // Story page - just apply saved language for title
-    const savedLang = localStorage.getItem('novels-lang');
-    if (savedLang === 'zh') {
-      const titles = {
-        'three-kingdoms': '三国演义',
-        'water-margin': '水浒传',
-        'journey-west': '西游记',
-        'red-chamber': '红楼梦'
-      };
-      const path = window.location.pathname;
-      for (const [key, title] of Object.entries(titles)) {
-        if (path.includes(key)) {
-          document.title = title;
-          break;
-        }
-      }
+  // Apply saved language to document
+  document.documentElement.setAttribute('data-lang', savedLang);
+  
+  // Update page title based on language
+  const path = window.location.pathname;
+  const titles = {
+    'en': {
+      'three-kingdoms': 'Romance of the Three Kingdoms',
+      'water-margin': 'Water Margin',
+      'journey-west': 'Journey to the West',
+      'red-chamber': 'Dream of the Red Chamber'
+    },
+    'zh': {
+      'three-kingdoms': '三国演义',
+      'water-margin': '水浒传',
+      'journey-west': '西游记',
+      'red-chamber': '红楼梦'
     }
+  };
+  
+  for (const [key, title] of Object.entries(titles[savedLang] || titles['en'])) {
+    if (path.includes(key)) {
+      document.title = title;
+      break;
+    }
+  }
+  
+  // Only create toggle instance on landing page
+  const toggle = document.querySelector('.lang-toggle');
+  if (toggle) {
+    window.langToggle = new LanguageToggle();
   }
 });
