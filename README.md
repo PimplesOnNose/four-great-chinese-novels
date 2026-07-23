@@ -2,7 +2,7 @@
 
 A digital showcase celebrating China's four greatest literary masterpieces, designed with deep respect for traditional Chinese aesthetics and philosophy.
 
-**[→ View Live Site](https://username.github.io/four-great-chinese-novels/)**
+**[→ View Live Site](https://pimplesonnose.github.io/four-great-chinese-novels/)**
 
 ---
 
