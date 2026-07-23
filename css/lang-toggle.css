@@ -1,0 +1,146 @@
+/* ========================================
+   四大名著 · Language Toggle Styles
+   ======================================== */
+
+/* Language Toggle Button */
+.lang-toggle {
+  position: fixed;
+  top: var(--space-4);
+  right: var(--space-20);
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(8, 10, 16, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+}
+
+.lang-option {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-default);
+  background: transparent;
+  color: var(--text-muted);
+}
+
+.lang-option:hover {
+  color: var(--text-secondary);
+}
+
+.lang-option.active {
+  background: var(--accent);
+  color: var(--bg-deep);
+  font-weight: var(--weight-medium);
+}
+
+/* Language-specific content visibility */
+[data-lang="en"] .zh-only {
+  display: none !important;
+}
+
+[data-lang="zh"] .en-only {
+  display: none !important;
+}
+
+/* Inline bilingual elements */
+.bilingual {
+  position: relative;
+}
+
+.bilingual .zh {
+  display: none;
+}
+
+[data-lang="zh"] .bilingual .en {
+  display: none;
+}
+
+[data-lang="zh"] .bilingual .zh {
+  display: inline;
+}
+
+/* Hero bilingual titles */
+.hero-title .title-zh {
+  display: block;
+}
+
+.hero-title .title-en {
+  display: block;
+}
+
+[data-lang="zh"] .hero-title .title-en {
+  display: none;
+}
+
+[data-lang="zh"] .hero-title .title-zh {
+  font-size: clamp(4rem, 10vw, 6rem);
+}
+
+/* Section bilingual headers */
+.section-title {
+  position: relative;
+}
+
+/* Novel card bilingual content */
+.novel-card .card-title-zh {
+  display: block;
+}
+
+.novel-card .card-title-en {
+  display: block;
+}
+
+[data-lang="zh"] .novel-card .card-title-en {
+  display: none;
+}
+
+[data-lang="zh"] .novel-card .card-title-zh {
+  font-size: var(--text-3xl);
+}
+
+/* Novel page bilingual hero */
+.novel-hero-zh,
+.novel-hero-en {
+  display: block;
+}
+
+[data-lang="zh"] .novel-hero-en {
+  display: none;
+}
+
+[data-lang="zh"] .novel-hero-zh {
+  font-size: clamp(5rem, 12vw, 8rem);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lang-toggle {
+    right: var(--space-4);
+    top: auto;
+    bottom: var(--space-20);
+  }
+  
+  .lang-option {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-xs);
+  }
+}
+
+/* Novel page language toggle positioning */
+.novel-page .lang-toggle {
+  top: var(--space-4);
+  right: var(--space-20);
+}
+
+@media (max-width: 768px) {
+  .novel-page .lang-toggle {
+    right: var(--space-4);
+    bottom: calc(var(--space-20) + 60px);
+  }
+}
