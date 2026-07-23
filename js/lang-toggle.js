@@ -9,11 +9,17 @@ class LanguageToggle {
   }
   
   init() {
-    // Set initial language
+    // Set data-lang attribute
     document.documentElement.setAttribute('data-lang', this.currentLang);
     
-    // Bind events to existing toggle
+    // Set initial button state
+    this.updateButtons();
+    
+    // Bind click events
     this.bindEvents();
+    
+    // Update page title
+    this.updateTitle();
   }
   
   bindEvents() {
@@ -32,14 +38,14 @@ class LanguageToggle {
     this.currentLang = lang;
     localStorage.setItem('novels-lang', lang);
     document.documentElement.setAttribute('data-lang', lang);
-    
-    // Update toggle state
-    document.querySelectorAll('.lang-option').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-    
-    // Update page title
+    this.updateButtons();
     this.updateTitle();
+  }
+  
+  updateButtons() {
+    document.querySelectorAll('.lang-option').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === this.currentLang);
+    });
   }
   
   updateTitle() {
@@ -73,19 +79,28 @@ class LanguageToggle {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  // Check if this is a story page (no toggle, but respect saved language)
-  const hasToggle = document.querySelector('.lang-toggle') || 
-                    document.querySelector('[data-lang]');
+  const toggle = document.querySelector('.lang-toggle');
   
-  if (!hasToggle) {
-    // Story page - just apply saved language
+  if (toggle) {
+    // Landing page - create toggle instance
+    window.langToggle = new LanguageToggle();
+  } else {
+    // Story page - just apply saved language for title
     const savedLang = localStorage.getItem('novels-lang');
     if (savedLang === 'zh') {
-      // Story pages don't have bilingual content, but we can at least
-      // set the document language for consistency
-      document.documentElement.lang = 'zh';
+      const titles = {
+        'three-kingdoms': '三国演义',
+        'water-margin': '水浒传',
+        'journey-west': '西游记',
+        'red-chamber': '红楼梦'
+      };
+      const path = window.location.pathname;
+      for (const [key, title] of Object.entries(titles)) {
+        if (path.includes(key)) {
+          document.title = title;
+          break;
+        }
+      }
     }
-  } else {
-    window.langToggle = new LanguageToggle();
   }
 });
