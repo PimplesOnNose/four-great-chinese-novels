@@ -5,6 +5,10 @@
 class LanguageToggle {
   constructor() {
     this.currentLang = localStorage.getItem('novels-lang') || 'en';
+    // Ensure data-lang is set
+    if (!document.documentElement.getAttribute('data-lang')) {
+      document.documentElement.setAttribute('data-lang', this.currentLang);
+    }
     this.init();
   }
   
