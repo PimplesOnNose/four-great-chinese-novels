@@ -1,6 +1,6 @@
 /* ========================================
    四大名著 · Four Great Novels
-   Audio Player Component
+   Audio Player with Tone.js MIDI Synth
    ======================================== */
 
 class AudioPlayer {
@@ -9,19 +9,15 @@ class AudioPlayer {
     this.title = config.title;
     this.subtitle = config.subtitle;
     this.isPlaying = false;
-    this.audio = null;
     this.container = null;
+    this.synth = null;
+    this.midiPart = null;
+    this.initialized = false;
     
-    this.init();
+    this.createUI();
   }
   
-  init() {
-    // Create audio element
-    this.audio = new Audio(this.src);
-    this.audio.loop = true;
-    this.audio.volume = 0.5;
-    
-    // Create player UI
+  createUI() {
     this.container = document.createElement('div');
     this.container.className = 'audio-player';
     this.container.innerHTML = `
@@ -59,24 +55,24 @@ class AudioPlayer {
       </div>
     `;
     
-    // Bind events
     this.bindEvents();
-    
-    // Add to DOM
     document.body.appendChild(this.container);
   }
   
   bindEvents() {
     const playBtn = this.container.querySelector('.audio-play-btn');
     const volumeBtn = this.container.querySelector('.audio-volume-btn');
-    const waves = this.container.querySelector('.audio-waves');
     const iconPlay = this.container.querySelector('.icon-play');
     const iconPause = this.container.querySelector('.icon-pause');
     const iconVolume = this.container.querySelector('.icon-volume');
     const iconMute = this.container.querySelector('.icon-mute');
+    const waves = this.container.querySelector('.audio-waves');
     
-    // Play/Pause
-    playBtn.addEventListener('click', () => {
+    playBtn.addEventListener('click', async () => {
+      if (!this.initialized) {
+        await this.initTone();
+      }
+      
       if (this.isPlaying) {
         this.pause();
       } else {
@@ -84,57 +80,169 @@ class AudioPlayer {
       }
     });
     
-    // Volume toggle
     volumeBtn.addEventListener('click', () => {
-      if (this.audio.muted) {
-        this.audio.muted = false;
-        iconVolume.style.display = '';
-        iconMute.style.display = 'none';
-      } else {
-        this.audio.muted = true;
-        iconVolume.style.display = 'none';
-        iconMute.style.display = '';
+      if (this.synth) {
+        if (this.synth.volume.value === -Infinity) {
+          this.synth.volume.value = -12;
+          iconVolume.style.display = '';
+          iconMute.style.display = 'none';
+        } else {
+          this.synth.volume.value = -Infinity;
+          iconVolume.style.display = 'none';
+          iconMute.style.display = '';
+        }
       }
     });
+  }
+  
+  async initTone() {
+    // Wait for Tone.js to be available
+    if (typeof Tone === 'undefined') {
+      console.error('Tone.js not loaded');
+      return;
+    }
     
-    // Audio events
-    this.audio.addEventListener('play', () => {
-      this.isPlaying = true;
-      iconPlay.style.display = 'none';
-      iconPause.style.display = '';
-      waves.classList.add('playing');
-    });
+    await Tone.start();
     
-    this.audio.addEventListener('pause', () => {
-      this.isPlaying = false;
-      iconPlay.style.display = '';
-      iconPause.style.display = 'none';
-      waves.classList.remove('playing');
-    });
+    // Create synth with Chinese instrument-like sound
+    this.synth = new Tone.PolySynth(Tone.Synth, {
+      oscillator: {
+        type: 'sine'
+      },
+      envelope: {
+        attack: 0.02,
+        decay: 0.3,
+        sustain: 0.3,
+        release: 0.8
+      },
+      volume: -12
+    }).toDestination();
     
-    this.audio.addEventListener('ended', () => {
-      this.isPlaying = false;
-      iconPlay.style.display = '';
-      iconPause.style.display = 'none';
-      waves.classList.remove('playing');
-    });
+    // Fetch and parse MIDI
+    await this.loadMIDI();
+    this.initialized = true;
+  }
+  
+  async loadMIDI() {
+    try {
+      const response = await fetch(this.src);
+      const arrayBuffer = await response.arrayBuffer();
+      const midi = new Tone.Midi(arrayBuffer);
+      
+      // Get all tracks
+      const notes = [];
+      midi.tracks.forEach(track => {
+        track.notes.forEach(note => {
+          notes.push({
+            time: note.time,
+            note: note.name,
+            duration: note.duration,
+            velocity: note.velocity
+          });
+        });
+      });
+      
+      // Sort by time
+      notes.sort((a, b) => a.time - b.time);
+      
+      // Create looping sequence
+      const duration = midi.duration;
+      
+      this.midiPart = new Tone.Part((time, note) => {
+        this.synth.triggerAttackRelease(
+          note.note,
+          note.duration,
+          time,
+          note.velocity
+        );
+      }, notes);
+      
+      this.midiPart.loop = true;
+      this.midiPart.loopEnd = duration;
+      
+    } catch (err) {
+      console.error('Failed to load MIDI:', err);
+      // Fallback: generate notes programmatically
+      this.generateFallbackNotes();
+    }
+  }
+  
+  generateFallbackNotes() {
+    // Generate pentatonic notes based on page
+    const path = window.location.pathname;
+    let scale = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5'];
+    
+    if (path.includes('three-kingdoms')) {
+      scale = ['G3', 'A3', 'B3', 'D4', 'E4', 'G4', 'A4', 'B4', 'D5', 'E5'];
+    } else if (path.includes('water-margin')) {
+      scale = ['D4', 'E4', 'G4', 'A4', 'B4', 'D5', 'E5', 'G5', 'A5', 'B5'];
+    } else if (path.includes('journey-west')) {
+      scale = ['C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5', 'A5'];
+    } else if (path.includes('red-chamber')) {
+      scale = ['A3', 'C4', 'D4', 'E4', 'G4', 'A4', 'C5', 'D5', 'E5', 'G5'];
+    }
+    
+    const notes = [];
+    const duration = 16;
+    
+    // Create a simple looping melody
+    for (let i = 0; i < 32; i++) {
+      const time = i * 0.5;
+      const noteIndex = Math.floor(Math.random() * scale.length);
+      const note = scale[noteIndex];
+      
+      notes.push({
+        time: time,
+        note: note,
+        duration: '8n',
+        velocity: 0.5 + Math.random() * 0.3
+      });
+    }
+    
+    this.midiPart = new Tone.Part((time, note) => {
+      this.synth.triggerAttackRelease(
+        note.note,
+        note.duration,
+        time,
+        note.velocity
+      );
+    }, notes);
+    
+    this.midiPart.loop = true;
+    this.midiPart.loopEnd = duration;
   }
   
   play() {
-    this.audio.play().catch(err => {
-      console.log('Audio play failed:', err);
-    });
+    if (this.midiPart) {
+      this.midiPart.start(0);
+      Tone.Transport.start();
+      this.isPlaying = true;
+      this.updateUI(true);
+    }
   }
   
   pause() {
-    this.audio.pause();
+    Tone.Transport.stop();
+    if (this.midiPart) {
+      this.midiPart.stop();
+    }
+    this.isPlaying = false;
+    this.updateUI(false);
   }
   
-  toggle() {
-    if (this.isPlaying) {
-      this.pause();
+  updateUI(playing) {
+    const iconPlay = this.container.querySelector('.icon-play');
+    const iconPause = this.container.querySelector('.icon-pause');
+    const waves = this.container.querySelector('.audio-waves');
+    
+    if (playing) {
+      iconPlay.style.display = 'none';
+      iconPause.style.display = '';
+      waves.classList.add('playing');
     } else {
-      this.play();
+      iconPlay.style.display = '';
+      iconPause.style.display = 'none';
+      waves.classList.remove('playing');
     }
   }
 }
@@ -144,47 +252,44 @@ function initAudioPlayer() {
   const path = window.location.pathname;
   let config = null;
   
+  // Determine base path for GitHub Pages
+  const isGitHubPages = window.location.hostname.includes('github.io');
+  const basePath = isGitHubPages ? '/four-great-chinese-novels' : '';
+  
   if (path.includes('three-kingdoms')) {
     config = {
-      src: 'audio/three-kingdoms.mp3',
+      src: basePath + '/audio/three-kingdoms.mp3',
       title: '三国演义',
       subtitle: 'Water Element · 水'
     };
   } else if (path.includes('water-margin')) {
     config = {
-      src: 'audio/water-margin.mp3',
+      src: basePath + '/audio/water-margin.mp3',
       title: '水浒传',
       subtitle: 'Earth Element · 土'
     };
   } else if (path.includes('journey-west')) {
     config = {
-      src: 'audio/journey-west.mp3',
+      src: basePath + '/audio/journey-west.mp3',
       title: '西游记',
       subtitle: 'Fire Element · 火'
     };
   } else if (path.includes('red-chamber')) {
     config = {
-      src: 'audio/red-chamber.mp3',
+      src: basePath + '/audio/red-chamber.mp3',
       title: '红楼梦',
       subtitle: 'Wood Element · 木'
     };
-  } else if (path.includes('index') || path.endsWith('/') || path.endsWith('/four-great-chinese-novels/')) {
+  } else {
+    // Landing page
     config = {
-      src: 'audio/landing.mp3',
+      src: basePath + '/audio/landing.mp3',
       title: '四大名著',
       subtitle: 'The Four Great Novels'
     };
   }
   
   if (config) {
-    // Handle relative paths for GitHub Pages
-    const isGitHubPages = window.location.hostname.includes('github.io');
-    if (isGitHubPages) {
-      config.src = window.location.pathname.split('/')[1] 
-        ? '/' + window.location.pathname.split('/')[1] + '/' + config.src
-        : '/' + config.src;
-    }
-    
     new AudioPlayer(config);
   }
 }
