@@ -2,20 +2,15 @@
    四大名著 · Language Toggle Styles
    ======================================== */
 
-/* Language Toggle Button */
+/* Language Toggle Button - Integrated in nav */
 .lang-toggle {
-  position: fixed;
-  top: var(--space-4);
-  right: var(--space-20);
-  z-index: 1001;
   display: flex;
   align-items: center;
   gap: 0;
-  background: rgba(8, 10, 16, 0.8);
-  backdrop-filter: blur(12px);
+  background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
-  padding: 3px;
+  padding: 2px;
 }
 
 .lang-option {
@@ -118,29 +113,19 @@
   font-size: clamp(5rem, 12vw, 8rem);
 }
 
-/* Responsive adjustments */
+/* Mobile - move to bottom */
 @media (max-width: 768px) {
   .lang-toggle {
-    right: var(--space-4);
-    top: auto;
-    bottom: var(--space-20);
+    position: fixed;
+    bottom: var(--space-6);
+    left: var(--space-6);
+    z-index: 1001;
+    background: rgba(13, 16, 24, 0.95);
+    backdrop-filter: blur(12px);
   }
   
   .lang-option {
     padding: var(--space-2) var(--space-3);
     font-size: var(--text-xs);
-  }
-}
-
-/* Novel page language toggle positioning */
-.novel-page .lang-toggle {
-  top: var(--space-4);
-  right: var(--space-20);
-}
-
-@media (max-width: 768px) {
-  .novel-page .lang-toggle {
-    right: var(--space-4);
-    bottom: calc(var(--space-20) + 60px);
   }
 }

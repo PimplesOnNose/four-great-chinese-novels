@@ -43,6 +43,8 @@
 .nav-links {
   display: flex;
   gap: var(--space-6);
+  flex: 1;
+  justify-content: center;
 }
 
 .nav-link {

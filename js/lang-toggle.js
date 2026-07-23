@@ -12,27 +12,20 @@ class LanguageToggle {
     // Set initial language
     document.documentElement.setAttribute('data-lang', this.currentLang);
     
-    // Create toggle UI
-    this.createToggle();
+    // Bind events to existing toggle
+    this.bindEvents();
   }
   
-  createToggle() {
-    const toggle = document.createElement('div');
-    toggle.className = 'lang-toggle';
-    toggle.innerHTML = `
-      <button class="lang-option ${this.currentLang === 'en' ? 'active' : ''}" data-lang="en">EN</button>
-      <button class="lang-option ${this.currentLang === 'zh' ? 'active' : ''}" data-lang="zh">中文</button>
-    `;
+  bindEvents() {
+    const toggle = document.querySelector('.lang-toggle');
+    if (!toggle) return;
     
-    // Bind events
     toggle.querySelectorAll('.lang-option').forEach(btn => {
       btn.addEventListener('click', () => {
         const lang = btn.dataset.lang;
         this.setLanguage(lang);
       });
     });
-    
-    document.body.appendChild(toggle);
   }
   
   setLanguage(lang) {
@@ -80,5 +73,19 @@ class LanguageToggle {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-  window.langToggle = new LanguageToggle();
+  // Check if this is a story page (no toggle, but respect saved language)
+  const hasToggle = document.querySelector('.lang-toggle') || 
+                    document.querySelector('[data-lang]');
+  
+  if (!hasToggle) {
+    // Story page - just apply saved language
+    const savedLang = localStorage.getItem('novels-lang');
+    if (savedLang === 'zh') {
+      // Story pages don't have bilingual content, but we can at least
+      // set the document language for consistency
+      document.documentElement.lang = 'zh';
+    }
+  } else {
+    window.langToggle = new LanguageToggle();
+  }
 });
