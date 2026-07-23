@@ -1,0 +1,122 @@
+/* ========================================
+   三国演义 · Romance of the Three Kingdoms
+   Water Element Theme (水)
+   Deep blue-indigo with silver accents
+   ======================================== */
+
+:root {
+  /* Novel-Specific Colors */
+  --novel-primary: #2c3e6b;      /* Deep Indigo */
+  --novel-primary-light: #4a6fa5;
+  --novel-primary-dim: rgba(44, 62, 107, 0.15);
+  --novel-accent: #5a8e9e;        /* Azure */
+  --novel-accent-dim: rgba(90, 142, 158, 0.12);
+  --novel-glow: rgba(90, 142, 158, 0.30);
+  --novel-surface: #0d1525;
+  --novel-card: #111d32;
+  --novel-text: #c8d6e5;
+}
+
+/* Override base colors for this novel */
+.novel-page {
+  background: var(--novel-surface);
+  color: var(--novel-text);
+}
+
+.novel-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(44, 62, 107, 0.3) 0%,
+    rgba(13, 21, 37, 0.8) 100%
+  );
+}
+
+.novel-hero-zh {
+  background: linear-gradient(135deg, #c8d6e5, #5a8e9e, #4a6fa5);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.novel-hero-accent {
+  background: linear-gradient(90deg, transparent, #5a8e9e, transparent);
+}
+
+/* Card Styling */
+.novel-info-card {
+  background: var(--novel-card);
+  border-color: rgba(90, 142, 158, 0.12);
+}
+
+.novel-info-card:hover {
+  border-color: var(--novel-accent);
+  box-shadow: 0 0 20px rgba(90, 142, 158, 0.2);
+}
+
+.novel-content-block {
+  background: var(--novel-card);
+  border-color: rgba(90, 142, 158, 0.12);
+}
+
+.novel-character-card {
+  background: var(--novel-card);
+  border-color: rgba(90, 142, 158, 0.12);
+}
+
+.novel-character-card:hover {
+  border-color: var(--novel-accent);
+}
+
+.novel-character-icon {
+  background: var(--novel-primary-dim);
+  color: var(--novel-accent);
+}
+
+.novel-quote-block {
+  background: var(--novel-card);
+  border-left-color: var(--novel-accent);
+}
+
+.novel-quote-block::before {
+  color: var(--novel-accent);
+}
+
+/* Back Button */
+.novel-back {
+  background: rgba(13, 21, 37, 0.9);
+  border-color: rgba(90, 142, 158, 0.2);
+}
+
+.novel-back:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Footer */
+.novel-footer {
+  background: var(--novel-card);
+  border-top-color: rgba(90, 142, 158, 0.12);
+}
+
+.novel-footer-link {
+  background: var(--novel-surface);
+  border-color: rgba(90, 142, 158, 0.12);
+}
+
+.novel-footer-link:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  background: rgba(90, 142, 158, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--novel-accent);
+}

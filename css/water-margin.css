@@ -1,0 +1,122 @@
+/* ========================================
+   水浒传 · Water Margin
+   Earth Element Theme (土)
+   Warm gold-brown with earthy tones
+   ======================================== */
+
+:root {
+  /* Novel-Specific Colors */
+  --novel-primary: #8b6914;      /* Deep Gold */
+  --novel-primary-light: #c9a227;
+  --novel-primary-dim: rgba(201, 162, 39, 0.15);
+  --novel-accent: #d4a84a;        /* Bright Gold */
+  --novel-accent-dim: rgba(212, 168, 74, 0.12);
+  --novel-glow: rgba(212, 168, 74, 0.30);
+  --novel-surface: #1a1510;
+  --novel-card: #221c14;
+  --novel-text: #e8dcc8;
+}
+
+/* Override base colors for this novel */
+.novel-page {
+  background: var(--novel-surface);
+  color: var(--novel-text);
+}
+
+.novel-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(139, 105, 20, 0.3) 0%,
+    rgba(26, 21, 16, 0.8) 100%
+  );
+}
+
+.novel-hero-zh {
+  background: linear-gradient(135deg, #e8dcc8, #d4a84a, #c9a227);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.novel-hero-accent {
+  background: linear-gradient(90deg, transparent, #d4a84a, transparent);
+}
+
+/* Card Styling */
+.novel-info-card {
+  background: var(--novel-card);
+  border-color: rgba(212, 168, 74, 0.12);
+}
+
+.novel-info-card:hover {
+  border-color: var(--novel-accent);
+  box-shadow: 0 0 20px rgba(212, 168, 74, 0.2);
+}
+
+.novel-content-block {
+  background: var(--novel-card);
+  border-color: rgba(212, 168, 74, 0.12);
+}
+
+.novel-character-card {
+  background: var(--novel-card);
+  border-color: rgba(212, 168, 74, 0.12);
+}
+
+.novel-character-card:hover {
+  border-color: var(--novel-accent);
+}
+
+.novel-character-icon {
+  background: var(--novel-primary-dim);
+  color: var(--novel-accent);
+}
+
+.novel-quote-block {
+  background: var(--novel-card);
+  border-left-color: var(--novel-accent);
+}
+
+.novel-quote-block::before {
+  color: var(--novel-accent);
+}
+
+/* Back Button */
+.novel-back {
+  background: rgba(26, 21, 16, 0.9);
+  border-color: rgba(212, 168, 74, 0.2);
+}
+
+.novel-back:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Footer */
+.novel-footer {
+  background: var(--novel-card);
+  border-top-color: rgba(212, 168, 74, 0.12);
+}
+
+.novel-footer-link {
+  background: var(--novel-surface);
+  border-color: rgba(212, 168, 74, 0.12);
+}
+
+.novel-footer-link:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 74, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--novel-accent);
+}

@@ -1,0 +1,126 @@
+/* ========================================
+   红楼梦 · Dream of the Red Chamber
+   Wood Element Theme (木)
+   Jade green with soft pink accents
+   ======================================== */
+
+:root {
+  /* Novel-Specific Colors */
+  --novel-primary: #2d5a47;      /* Deep Jade */
+  --novel-primary-light: #4a9e8a;
+  --novel-primary-dim: rgba(74, 158, 138, 0.15);
+  --novel-accent: #6db3a4;        /* Soft Jade */
+  --novel-accent-dim: rgba(109, 179, 164, 0.12);
+  --novel-glow: rgba(109, 179, 164, 0.30);
+  --novel-surface: #0f1a15;
+  --novel-card: #14211a;
+  --novel-text: #d8e8e0;
+  
+  /* Pink accents for romance theme */
+  --novel-pink: #d4a0a0;
+  --novel-pink-dim: rgba(212, 160, 160, 0.12);
+}
+
+/* Override base colors for this novel */
+.novel-page {
+  background: var(--novel-surface);
+  color: var(--novel-text);
+}
+
+.novel-hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 90, 71, 0.3) 0%,
+    rgba(15, 26, 21, 0.8) 100%
+  );
+}
+
+.novel-hero-zh {
+  background: linear-gradient(135deg, #d8e8e0, #6db3a4, #d4a0a0);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.novel-hero-accent {
+  background: linear-gradient(90deg, transparent, #6db3a4, #d4a0a0, transparent);
+}
+
+/* Card Styling */
+.novel-info-card {
+  background: var(--novel-card);
+  border-color: rgba(109, 179, 164, 0.12);
+}
+
+.novel-info-card:hover {
+  border-color: var(--novel-accent);
+  box-shadow: 0 0 20px rgba(109, 179, 164, 0.2);
+}
+
+.novel-content-block {
+  background: var(--novel-card);
+  border-color: rgba(109, 179, 164, 0.12);
+}
+
+.novel-character-card {
+  background: var(--novel-card);
+  border-color: rgba(109, 179, 164, 0.12);
+}
+
+.novel-character-card:hover {
+  border-color: var(--novel-accent);
+}
+
+.novel-character-icon {
+  background: var(--novel-primary-dim);
+  color: var(--novel-accent);
+}
+
+.novel-quote-block {
+  background: var(--novel-card);
+  border-left-color: var(--novel-accent);
+}
+
+.novel-quote-block::before {
+  color: var(--novel-accent);
+}
+
+/* Back Button */
+.novel-back {
+  background: rgba(15, 26, 21, 0.9);
+  border-color: rgba(109, 179, 164, 0.2);
+}
+
+.novel-back:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Footer */
+.novel-footer {
+  background: var(--novel-card);
+  border-top-color: rgba(109, 179, 164, 0.12);
+}
+
+.novel-footer-link {
+  background: var(--novel-surface);
+  border-color: rgba(109, 179, 164, 0.12);
+}
+
+.novel-footer-link:hover {
+  color: var(--novel-accent);
+  border-color: var(--novel-accent);
+  background: var(--novel-primary-dim);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar-thumb {
+  background: rgba(109, 179, 164, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--novel-accent);
+}

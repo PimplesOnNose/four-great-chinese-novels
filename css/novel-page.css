@@ -1,0 +1,373 @@
+/* ========================================
+   四大名著 · Four Great Novels
+   Novel Page Shared Styles
+   ======================================== */
+
+/* Novel Page Layout */
+.novel-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Novel Hero Section */
+.novel-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.novel-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.novel-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.novel-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 10, 16, 0.4) 0%,
+    rgba(8, 10, 16, 0.7) 50%,
+    rgba(8, 10, 16, 0.95) 100%
+  );
+}
+
+.novel-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: var(--space-6);
+  max-width: 900px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.novel-hero-number {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 15vw, 10rem);
+  opacity: 0.15;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.novel-hero-zh {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 7rem);
+  margin-bottom: var(--space-4);
+  background: linear-gradient(135deg, var(--text-primary), var(--novel-accent, var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: var(--tracking-wider);
+}
+
+.novel-hero-en {
+  font-family: var(--font-western);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.novel-hero-author {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+}
+
+.novel-hero-accent {
+  display: block;
+  width: 100px;
+  height: 2px;
+  margin: 0 auto var(--space-6);
+  background: linear-gradient(90deg,
+    transparent,
+    var(--novel-accent, var(--accent)),
+    transparent);
+}
+
+.novel-hero-quote {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--text-secondary);
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: var(--leading-relaxed);
+}
+
+/* Novel Content Sections */
+.novel-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--space-24) var(--space-6);
+}
+
+.novel-section {
+  margin-bottom: var(--space-20);
+}
+
+.novel-section-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.novel-section-title {
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+  background: linear-gradient(135deg, var(--text-primary), var(--novel-accent, var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.novel-section-subtitle {
+  font-family: var(--font-western);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* Information Cards */
+.novel-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .novel-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.novel-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+.novel-info-card:hover {
+  border-color: var(--novel-accent, var(--accent));
+  box-shadow: var(--glow-accent-sm);
+}
+
+.novel-info-label {
+  font-family: var(--font-western);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.novel-info-value {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.novel-info-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Content Blocks */
+.novel-content-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  margin-bottom: var(--space-6);
+}
+
+.novel-content-block h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-6);
+  color: var(--text-primary);
+}
+
+.novel-content-block p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.novel-content-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* Character Cards */
+.novel-characters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+}
+
+.novel-character-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+.novel-character-card:hover {
+  border-color: var(--novel-accent, var(--accent));
+  transform: translateY(-5px);
+}
+
+.novel-character-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-4);
+  background: var(--accent-dim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-3xl);
+  color: var(--novel-accent, var(--accent));
+}
+
+.novel-character-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.novel-character-title {
+  font-family: var(--font-western);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.novel-character-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Quote Blocks */
+.novel-quote-block {
+  position: relative;
+  padding: var(--space-8) var(--space-10);
+  background: var(--bg-card);
+  border-left: 3px solid var(--novel-accent, var(--accent));
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  margin: var(--space-8) 0;
+}
+
+.novel-quote-block::before {
+  content: '"';
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  font-size: var(--text-4xl);
+  color: var(--novel-accent, var(--accent));
+  opacity: 0.3;
+  font-family: var(--font-western);
+}
+
+.novel-quote-text {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.novel-quote-source {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* Back Navigation */
+.novel-back {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(8, 10, 16, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  z-index: 1000;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.novel-back:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.novel-back svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Footer */
+.novel-footer {
+  padding: var(--space-12) var(--space-6);
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.novel-footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.novel-footer-link {
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  transition: all var(--duration-fast) var(--ease-default);
+}
+
+.novel-footer-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.novel-footer-credits {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}

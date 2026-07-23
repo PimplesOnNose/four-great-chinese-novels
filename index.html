@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四大名著 · The Four Great Chinese Novels</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+    <!-- Atmospheric Mist Layers -->
+    <div class="atmosphere">
+        <div class="mist mist-1"></div>
+        <div class="mist mist-2"></div>
+        <div class="mist mist-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <a href="index.html" class="nav-brand">
+            <span class="brand-zh">四大名著</span>
+            <span class="brand-en">Four Great Novels</span>
+        </a>
+        <div class="nav-links">
+            <a href="three-kingdoms.html" class="nav-link">三国</a>
+            <a href="water-margin.html" class="nav-link">水浒</a>
+            <a href="journey-west.html" class="nav-link">西游</a>
+            <a href="red-chamber.html" class="nav-link">红楼</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-pattern"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-accent-line"></span>
+            <h1 class="hero-title">
+                <span class="title-zh">四大名著</span>
+                <span class="title-en">The Four Great Classical Novels</span>
+            </h1>
+            <p class="hero-subtitle">
+                千古流传的文学瑰宝<br>
+                Literary masterpieces that have shaped Chinese culture for centuries
+            </p>
+            <div class="hero-quote">
+                <p>"天下大势，分久必合，合久必分"</p>
+                <span class="quote-attr">— 《三国演义》</span>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>探索经典</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Novels Grid Section -->
+    <section class="novels-section">
+        <div class="section-header">
+            <span class="section-accent"></span>
+            <h2 class="section-title">四大奇书</h2>
+            <p class="section-subtitle">The Four Masterworks</p>
+        </div>
+
+        <div class="novels-grid">
+            <!-- Romance of the Three Kingdoms -->
+            <a href="three-kingdoms.html" class="novel-card" data-novel="three-kingdoms">
+                <div class="card-image">
+                    <img src="images/three-kingdoms-hero.png" alt="Romance of the Three Kingdoms" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-number">壹</span>
+                    <h3 class="card-title-zh">三国演义</h3>
+                    <h4 class="card-title-en">Romance of the Three Kingdoms</h4>
+                    <p class="card-author">罗贯中 · Luo Guanzhong</p>
+                    <div class="card-divider"></div>
+                    <p class="card-excerpt">历史的宏大叙事，英雄的壮志豪情。一部关于权力、忠义与智谋的史诗。</p>
+                    <span class="card-period">14世纪 · 明代</span>
+                </div>
+                <div class="card-element water"></div>
+            </a>
+
+            <!-- Water Margin -->
+            <a href="water-margin.html" class="novel-card" data-novel="water-margin">
+                <div class="card-image">
+                    <img src="images/water-margin-hero.png" alt="Water Margin" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-number">贰</span>
+                    <h3 class="card-title-zh">水浒传</h3>
+                    <h4 class="card-title-en">Water Margin</h4>
+                    <p class="card-author">施耐庵 · Shi Nai'an</p>
+                    <div class="card-divider"></div>
+                    <p class="card-excerpt">一百零八位好汉，替天行道。一部关于反抗、忠义与江湖的传奇。</p>
+                    <span class="card-period">14世纪 · 明代</span>
+                </div>
+                <div class="card-element earth"></div>
+            </a>
+
+            <!-- Journey to the West -->
+            <a href="journey-west.html" class="novel-card" data-novel="journey-west">
+                <div class="card-image">
+                    <img src="images/journey-west-hero.png" alt="Journey to the West" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-number">叁</span>
+                    <h3 class="card-title-zh">西游记</h3>
+                    <h4 class="card-title-en">Journey to the West</h4>
+                    <p class="card-author">吴承恩 · Wu Cheng'en</p>
+                    <div class="card-divider"></div>
+                    <p class="card-excerpt">师徒四人，西天取经。一部关于修行、冒险与救赎的神话。</p>
+                    <span class="card-period">16世纪 · 明代</span>
+                </div>
+                <div class="card-element fire"></div>
+            </a>
+
+            <!-- Dream of the Red Chamber -->
+            <a href="red-chamber.html" class="novel-card" data-novel="red-chamber">
+                <div class="card-image">
+                    <img src="images/red-chamber-hero.png" alt="Dream of the Red Chamber" loading="lazy">
+                    <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-number">肆</span>
+                    <h3 class="card-title-zh">红楼梦</h3>
+                    <h4 class="card-title-en">Dream of the Red Chamber</h4>
+                    <p class="card-author">曹雪芹 · Cao Xueqin</p>
+                    <div class="card-divider"></div>
+                    <p class="card-excerpt">大观园中的悲欢离合。一部关于爱情、幻灭与人生如梦的绝唱。</p>
+                    <span class="card-period">18世纪 · 清代</span>
+                </div>
+                <div class="card-element wood"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Cultural Significance Section -->
+    <section class="significance-section">
+        <div class="significance-content">
+            <span class="section-accent"></span>
+            <h2 class="section-title">千古流传</h2>
+            <p class="section-subtitle">Enduring Legacy</p>
+            
+            <div class="significance-grid">
+                <div class="sig-item">
+                    <div class="sig-icon">文</div>
+                    <h3>文学价值</h3>
+                    <p>Literary Value</p>
+                    <span class="sig-desc">塑造了中国古典小说的叙事范式，影响东亚文学数百年</span>
+                </div>
+                <div class="sig-item">
+                    <div class="sig-icon">史</div>
+                    <h3>历史影响</h3>
+                    <p>Historical Impact</p>
+                    <span class="sig-desc">从宫廷政治到民间信仰，深刻影响了中国社会的方方面面</span>
+                </div>
+                <div class="sig-item">
+                    <div class="sig-icon">哲</div>
+                    <h3>哲学思想</h3>
+                    <p>Philosophical Depth</p>
+                    <span class="sig-desc">融合儒释道三家思想，探讨忠义、因果、无常等永恒主题</span>
+                </div>
+                <div class="sig-item">
+                    <div class="sig-icon">艺</div>
+                    <h3>艺术传承</h3>
+                    <p>Artistic Heritage</p>
+                    <span class="sig-desc">改编为戏曲、影视、游戏，至今仍是东亚流行文化的源泉</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-header">
+            <span class="section-accent"></span>
+            <h2 class="section-title">创作年代</h2>
+            <p class="section-subtitle">Timeline of Creation</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item" data-novel="three-kingdoms">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">约1368-1398</span>
+                    <h3>三国演义</h3>
+                    <p>明代开国之初，罗贯中完成此书</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-novel="water-margin">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">约1368-1398</span>
+                    <h3>水浒传</h3>
+                    <p>与三国同期，施耐庵著成此书</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-novel="journey-west">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">约1592</span>
+                    <h3>西游记</h3>
+                    <p>明代中期，吴承恩刊印此书</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-novel="red-chamber">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-date">约1750s</span>
+                    <h3>红楼梦</h3>
+                    <p>清代中期，曹雪芹创作此书</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="brand-zh">四大名著</span>
+                <p>中国古典文学的巅峰之作</p>
+            </div>
+            <div class="footer-links">
+                <a href="three-kingdoms.html">三国演义</a>
+                <a href="water-margin.html">水浒传</a>
+                <a href="journey-west.html">西游记</a>
+                <a href="red-chamber.html">红楼梦</a>
+            </div>
+            <div class="footer-credits">
+                <p>Crafted with <span class="heart">♥</span> by <a href="https://pi.dev" target="_blank" rel="noopener">Pi</a> & <a href="https://mimo.mi.com/" target="_blank" rel="noopener">Mimo</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* ========================================
+   四大名著 · Four Great Novels
+   Design Variables & Foundation
+   Based on Qinglu Design System
+   with Traditional Chinese Elements
+   ======================================== */
+
+:root {
+  /* ── Color Palette: Traditional Chinese ── */
+  
+  /* Backgrounds - Deep night sky gradients */
+  --bg-deep: #080a10;
+  --bg-card: #0d1018;
+  --bg-elevated: #11141d;
+  --bg-surface: #161a24;
+  
+  /* Primary Accent - Jade Green (Wood Element) */
+  --accent: #4a9e8a;
+  --accent-dim: rgba(74, 158, 138, 0.12);
+  --accent-glow: rgba(74, 158, 138, 0.30);
+  --accent-soft: rgba(74, 158, 138, 0.06);
+  --accent-deep: #3d8b7a;
+  --accent-light: #6db3a4;
+  
+  /* Traditional Chinese Colors */
+  --vermillion: #c23b22;     /* 朱砂红 - Fire Element */
+  --vermillion-deep: #8b1a1a;
+  --gold: #c9a227;           /* 金色 - Earth Element */
+  --gold-dim: rgba(201, 162, 39, 0.12);
+  --jade: #2d5a47;           /* 翡翠绿 */
+  --indigo: #2c3e6b;         /* 靛蓝 */
+  --ink: #1a1814;            /* 墨色 */
+  --paper: #f4efe6;          /* 宣纸色 */
+  --paper-dark: #e8e0d0;
+  
+  /* Element Colors */
+  --element-water: #3a7a9e;  /* 水 - Blue */
+  --element-fire: #c23b22;   /* 火 - Red */
+  --element-wood: #4a9e8a;   /* 木 - Green */
+  --element-earth: #c9a227;  /* 土 - Yellow */
+  --element-metal: #8a9aa8;  /* 金 - White/Metal */
+  
+  /* Text Colors */
+  --text-primary: #e0e8e4;
+  --text-secondary: #8a9e95;
+  --text-muted: #3a4a42;
+  --text-accent: #4a9e8a;
+  
+  /* Semantic Colors */
+  --error: #c85040;
+  --seal: #a83838;
+  --fav: #d4a84a;
+  --pinyin: #7a9e90;
+  
+  /* Borders & Dividers */
+  --border: rgba(74, 158, 138, 0.12);
+  --border-hover: rgba(74, 158, 138, 0.30);
+  --divider: linear-gradient(90deg, transparent 0%, var(--accent-soft) 50%, transparent 100%);
+  
+  /* ── Typography Scale ── */
+  
+  /* Font Families */
+  --font-display: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+  --font-serif: 'Noto Serif SC', 'STSong', serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-western: 'Crimson Pro', Georgia, serif;
+  
+  /* Font Sizes - Modular Scale (1.25) */
+  --text-xs: 0.64rem;
+  --text-sm: 0.8rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.563rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-4xl: 3.052rem;
+  --text-5xl: 3.815rem;
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.8;
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.12em;
+  --tracking-widest: 0.25em;
+  
+  /* ── Spacing Scale ── */
+  
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* ── Border Radius ── */
+  
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+  
+  /* ── Shadows & Effects ── */
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+  
+  --glow-accent: 0 0 20px var(--accent-glow);
+  --glow-accent-sm: 0 0 10px var(--accent-glow);
+  --glow-accent-lg: 0 0 40px var(--accent-glow);
+  
+  /* ── Transitions ── */
+  
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+}
+
+/* ── Novel-Specific Color Themes ── */
+
+[data-novel="three-kingdoms"] {
+  --novel-accent: var(--element-water);
+  --novel-accent-dim: rgba(58, 122, 158, 0.12);
+  --novel-glow: rgba(58, 122, 158, 0.30);
+}
+
+[data-novel="water-margin"] {
+  --novel-accent: var(--element-earth);
+  --novel-accent-dim: rgba(201, 162, 39, 0.12);
+  --novel-glow: rgba(201, 162, 39, 0.30);
+}
+
+[data-novel="journey-west"] {
+  --novel-accent: var(--element-fire);
+  --novel-accent-dim: rgba(194, 59, 34, 0.12);
+  --novel-glow: rgba(194, 59, 34, 0.30);
+}
+
+[data-novel="red-chamber"] {
+  --novel-accent: var(--element-wood);
+  --novel-accent-dim: rgba(74, 158, 138, 0.12);
+  --novel-glow: rgba(74, 158, 138, 0.30);
+}
+
+/* ── Dark Mode (Default) ── */
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* ── Light Mode Override ── */
+[data-theme="light"] {
+  --bg-deep: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-elevated: #f0f2f5;
+  --bg-surface: #e8eaed;
+  
+  --text-primary: #1a1d21;
+  --text-secondary: #4a5568;
+  --text-muted: #a0aec0;
+  
+  --border: rgba(74, 158, 138, 0.2);
+  --border-hover: rgba(74, 158, 138, 0.4);
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+}

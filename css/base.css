@@ -1,0 +1,114 @@
+/* ========================================
+   四大名著 · Four Great Novels
+   Base Styles & Reset
+   ======================================== */
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+}
+
+p {
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-relaxed);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-dim);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-dim);
+  color: var(--accent-light);
+}
+
+/* Chinese Typography Utilities */
+.zh-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+.zh-serif {
+  font-family: var(--font-serif);
+}
+
+.en-serif {
+  font-family: var(--font-western);
+  font-style: italic;
+}
+
+/* Pinyin Display */
+.pinyin {
+  font-family: var(--font-western);
+  font-size: var(--text-sm);
+  color: var(--pinyin);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Seal/Stamps */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-3);
+  background: var(--seal);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+  transform: rotate(-5deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
