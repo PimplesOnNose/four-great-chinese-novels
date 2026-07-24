@@ -6,6 +6,17 @@ A digital showcase celebrating China's four greatest literary masterpieces, desi
 
 ---
 
+## ✨ Features
+
+- **Bilingual Experience** — Toggle between English (EN) and Chinese (中文) on all pages
+- **Language Persistence** — Your language choice persists across page navigation via localStorage
+- **Wu Xing Theming** — Each novel has its own elemental color palette (Water, Earth, Fire, Wood)
+- **Gongbi Artwork** — AI-generated traditional Chinese brush painting style images
+- **Responsive Design** — Works beautifully on desktop and mobile
+- **Scroll Animations** — Elegant reveal effects as you explore the content
+
+---
+
 ## Design Philosophy
 
 ### The Five Elements (五行) as Design Language
@@ -47,7 +58,7 @@ Every design decision seeks equilibrium:
 
 ### Atmospheric Layers
 
-The floating mist effect isn't merely decorative—it evokes the **mountain-water paintings** (山水画) that inspired the Qinglu aesthetic. These semi-transparent layers create depth, suggesting the spatial philosophy of traditional Chinese art where **negative space** (留白) is as important as the painted surface.
+The floating mist effect evokes the **mountain-water paintings** (山水画) that inspired the Qinglu aesthetic. These semi-transparent layers create depth, suggesting the spatial philosophy of traditional Chinese art where **negative space** (留白) is as important as the painted surface.
 
 ---
 
@@ -55,7 +66,7 @@ The floating mist effect isn't merely decorative—it evokes the **mountain-wate
 
 ```
 four-great-chinese-novels/
-├── index.html                 # Landing page
+├── index.html                 # Landing page with language toggle
 ├── three-kingdoms.html        # 三国演义 · Water element
 ├── water-margin.html          # 水浒传 · Earth element
 ├── journey-west.html          # 西游记 · Fire element
@@ -67,6 +78,7 @@ four-great-chinese-novels/
 │   ├── animations.css         # Scroll reveal & atmospheric effects
 │   ├── components.css         # Reusable UI components
 │   ├── novel-page.css         # Shared novel page layout
+│   ├── lang-toggle.css        # Language toggle styles
 │   ├── three-kingdoms.css     # Water element overrides
 │   ├── water-margin.css       # Earth element overrides
 │   ├── journey-west.css       # Fire element overrides
@@ -74,25 +86,12 @@ four-great-chinese-novels/
 │
 ├── js/
 │   ├── landing.js             # Landing page interactions
-│   └── novel-page.js          # Novel page scroll effects
+│   ├── novel-page.js          # Novel page scroll effects
+│   └── lang-toggle.js         # Language toggle component
 │
 └── images/
     └── *.png                  # Gongbi-style AI artwork
 ```
-
-### Key Technical Decisions
-
-**No Build Tools Required**
-The entire site runs on native HTML, CSS, and JavaScript. No bundlers, no transpilers, no node_modules. This mirrors the **simplicity and clarity** valued in Chinese aesthetic philosophy.
-
-**CSS Custom Properties for Theming**
-Each novel's element colors are defined as CSS variables, allowing seamless theming without JavaScript runtime overhead. The `data-novel` attribute on the body element activates the appropriate color scheme.
-
-**Intersection Observer for Animations**
-Scroll-triggered reveals use the native Intersection Observer API, providing smooth performance without external dependencies. Elements fade in as they enter the viewport, creating a sense of **unfolding narrative**.
-
-**Responsive Typography**
-Font sizes use `clamp()` for fluid scaling between mobile and desktop, ensuring Chinese characters remain legible at all viewport sizes.
 
 ---
 
